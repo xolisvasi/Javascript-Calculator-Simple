@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=div, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .background{
+            background-image: linear-gradient(45deg,black,blue);
+            height: 100vh;
+            color: white;
+            font-family:Arial, Helvetica, sans-serif;
+            text-align: center;
+        }
+        .calculator{
+            position: absolute;
+            background-color: rgba(0,0,0,0.8);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            border-radius: 15px;
+            padding: 15px;
+        }
+        .button{
+            width: 50px;
+            height: 50px;
+            font-size: 25px;
+            cursor: pointer;
+            margin: 3px;
+            background-color: grey;
+            border: none;
+            color: white;
+        }
+        .button:hover{
+            background-color: black;
+        }
+        #result{
+            background-color: white;
+            width: 207px;
+            height: 30px;
+            margin: 5px;
+            font-size: 25px;
+            color: black;
+            text-align: right;
+            padding: 5px;
+            overflow-x: auto;
+            overflow-y: hidden;
+        }
+        /*barra de rolagem */
+        ::-webkit-scrollbar{
+            height: 4px;
+        }
+        /*Trilha (barra de progresso) ou barra de rolagem */
+        ::-webkit-scrollbar-track {
+            background-color: gray;
+        }
+        /* Alça de rolagem arrastável */
+        ::-webkit-scrollbar-thumb{
+            background-color: blue;
+        }
+        ::-webkit-scrollbar-thumb:hover{
+            background-color: darkkhaki;
+        }
+    </style>
+</head>
+<body>
+    <div class="background">
+        <h1>Xolisvasi</h1>
+        <div class="calculator">
+            <h1>Calculator</h1>
+            <p id="result"></p>
+            <table>
+                <tr> 
+                    <td><button class="button" onclick="clean()">C</button></td>
+                    <td><button class="button" onclick="back()"><</button></td>
+                    <td><button class="button" onclick="insert('/')">/</button></td>
+                    <td><button class="button" onclick="insert('*')">X</button></td>
+                </tr>
+                <tr>
+                    <td><button class="button" onclick="insert('7')">7</button></td>
+                    <td><button class="button" onclick="insert('8')">8</button></td>
+                    <td><button class="button" onclick="insert('9')">9</button></td>
+                    <td><button class="button" onclick="insert('-')">-</button></td>
+                </tr>
+                <tr>
+                    <td><button class="button" onclick="insert('4')">4</button></td>
+                    <td><button class="button" onclick="insert('5')">5</button></td>
+                    <td><button class="button" onclick="insert('6')">6</button></td>
+                    <td><button class="button" onclick="insert('+')"">+</button></td>
+                </tr>
+                <tr>
+                    <td><button class="button" onclick="insert('1')">1</button></td>
+                    <td><button class="button" onclick="insert('2')">2</button></td>
+                    <td><button class="button" onclick="insert('3')">3</button></td>
+                    <td rowspan="2"><button class="button" style="height: 106px;" onclick="calculate()">=</button></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><button class="button" style="width: 106px;" onclick="insert('0')">0</button></td>
+                    <td><button class="button" onclick="insert('.')">.</button></td>
+                </tr>
+            </table>
+            </div>
+        </div>
+        <script>
+            function insert(number){
+               var num = document.getElementById('result').innerHTML;
+               document.getElementById('result').innerHTML = num + number;
+            }
+            function clean()
+            {
+                document.getElementById('result').innerHTML = "";
+            }
+            function back()
+            {
+                var result = document.getElementById('result').innerHTML;
+                document.getElementById('result').innerHTML = result.substring(0, result.length -1);
+            }
+            function calculate()
+            {
+                var result = document.getElementById('result').innerHTML;
+                if(result)
+                {
+                    document.getElementById('result').innerHTML = eval(result);
+                }
+                else
+                {
+                    document.getElementById('result').innerHTML = "nothing..."
+                }
+            }
+        </script>
+</body>
+</html>
